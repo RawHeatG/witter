@@ -1,6 +1,11 @@
 @tailwind base;
 
+.leftbar-option {
+  @apply flex space-x-4 items-center cursor-pointer;
+}
+.leftbar-option:hover {
+  @apply text-purple;
+}
 
 @tailwind components;
 @tailwind utilities;
-
