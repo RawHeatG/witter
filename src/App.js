@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom";
 function App() {
   const { theme } = useTheme();
   return (
-    <div className="text-text bg-gray-800 w-screen h-full min-h-screen">
+    <div className="text-text bg-gray-900 w-screen h-full min-h-screen">
       <Routes>
         <Route path="/" element={<Home />} />
       </Routes>

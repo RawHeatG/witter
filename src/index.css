@@ -7,5 +7,9 @@
   @apply text-purple;
 }
 
+.feed {
+  margin: 0 25% 0 25%;
+}
+
 @tailwind components;
 @tailwind utilities;
