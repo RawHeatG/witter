@@ -1,4 +1,11 @@
-export function Weet() {
+import { useSelector, useDispatch } from "react-redux";
+import { like } from "./tweetsSlice";
+
+export function Tweet({ tweet }) {
+  const { name, username, content, likes } = tweet;
+
+  const dispatch = useDispatch();
+
   return (
     <div className="flex min-h-32 border-b border-gray-600 p-4">
       <img
@@ -10,16 +17,11 @@ export function Weet() {
       <div className="px-4">
         <div className="pb-2">
           <h2 className="text-lg font-bold">
-            Full Name
-            <span className="text-gray-400 font-light"> @username</span>
+            {name}
+            <span className="text-gray-400 font-light"> @{username}</span>
           </h2>
         </div>
-        <div className="pb-4 text-lg">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
-          dolorem nam animi ipsa recusandae, rerum consectetur voluptatum qui
-          beatae. Rerum repellendus soluta laborum fugiat reiciendis omnis
-          dignissimos nulla sit totam?
-        </div>
+        <div className="pb-4 text-lg">{content}</div>
         <div className="flex justify-between">
           <div className="flex space-x-20">
             <svg
@@ -60,6 +62,9 @@ export function Weet() {
               stroke="currentColor"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
+              onClick={() => {
+                dispatch(like(tweet));
+              }}
             >
               <g>
                 <path
@@ -70,6 +75,7 @@ export function Weet() {
                 />
               </g>
             </svg>
+            {likes}
           </div>
           <div className="pr-20">
             <svg

@@ -1,5 +1,5 @@
 import { useTheme } from "./Contexts";
-import { Home } from "./Pages";
+import { Home } from "./features";
 import { Routes, Route } from "react-router-dom";
 
 function App() {

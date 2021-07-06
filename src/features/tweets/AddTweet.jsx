@@ -1,4 +1,4 @@
-export function AddWeet() {
+export function AddTweet() {
   return (
     <div className="border-b border-gray-600 p-4">
       <div className="flex ">
@@ -15,7 +15,10 @@ export function AddWeet() {
             placeholder="What's happening"
           ></textarea>
           <div className="flex justify-end pt-4">
-            <button className="px-8 py-2 rounded-full text-xl font-bold bg-purple">
+            <button
+              className="px-8 py-2 rounded-full text-xl font-bold bg-purple"
+              onClick={() => {}}
+            >
               Weet
             </button>
           </div>

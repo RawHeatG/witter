@@ -1,5 +1,5 @@
 import { LeftBar, RightBar } from "../../Components";
-import { Feed } from "./Components";
+import { Feed } from "./Feed";
 
 export function Home() {
   return (
