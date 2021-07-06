@@ -5,7 +5,7 @@ export function Home() {
   return (
     <div>
       <LeftBar />
-      <div className="feed ml-1/2">
+      <div className="midbar">
         <Feed />
       </div>
       <RightBar />

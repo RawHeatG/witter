@@ -7,7 +7,7 @@ export function Feed() {
   const tweets = useSelector((state) => state.tweets.tweets);
   console.log(tweets);
   return (
-    <div className="px-1/4">
+    <div>
       <AddTweet />
       <div>
         {tweets.map((tweet) => (

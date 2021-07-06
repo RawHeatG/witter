@@ -7,8 +7,12 @@
   @apply text-purple;
 }
 
-.feed {
+.midbar {
   margin: 0 25% 0 25%;
+}
+
+.secondary-text {
+  @apply text-gray-400 font-light;
 }
 
 @tailwind components;

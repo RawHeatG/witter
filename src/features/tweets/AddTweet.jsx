@@ -11,6 +11,7 @@ export function AddTweet() {
         </div>
         <div className="w-full pr-4 pt-3">
           <textarea
+            style={{ resize: "none" }}
             className="w-full h-20 mx-4 text-2xl text-gray-500 bg-gray-900 border-b border-gray-600"
             placeholder="What's happening"
           ></textarea>

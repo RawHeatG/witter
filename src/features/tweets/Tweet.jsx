@@ -18,7 +18,7 @@ export function Tweet({ tweet }) {
         <div className="pb-2">
           <h2 className="text-lg font-bold">
             {name}
-            <span className="text-gray-400 font-light"> @{username}</span>
+            <span className="secondary-text"> @{username}</span>
           </h2>
         </div>
         <div className="pb-4 text-lg">{content}</div>
