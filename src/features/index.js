@@ -1,4 +1,6 @@
 export { Home } from "./tweets/Home";
 export { Tweet } from "./tweets/Tweet";
-
-export { Profile } from "./profile/Profile";
+export { Landing } from "./auth/landing/Landing";
+export { Login } from "./auth/Login";
+export { Signup } from "./auth/Signup";
+export { User } from "./user/User";

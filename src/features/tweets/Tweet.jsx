@@ -14,7 +14,7 @@ export function Tweet({ tweet }) {
         alt="user"
       />
 
-      <div className="px-4">
+      <div className="px-4 w-full">
         <div className="pb-2">
           <h2 className="text-lg font-bold">
             {name}
@@ -77,7 +77,7 @@ export function Tweet({ tweet }) {
             </svg>
             {likes}
           </div>
-          <div className="pr-20">
+          <div className="pr-4">
             <svg
               className="w-8 h-8 leftbar-option"
               fill="currentColor"
