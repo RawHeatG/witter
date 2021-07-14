@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../authentication/authSlice";
 
@@ -16,6 +16,11 @@ export function Login() {
     const passwordRegex = /^[\w!@#$%^&*)(+=._-]{6,}$/;
     return passwordRegex.test(password);
   }
+  const loggedInUser = useSelector((state) => state.auth.user);
+  const navigate = useNavigate();
+  useEffect(() => {
+    loggedInUser && navigate("/feed");
+  }, [loggedInUser, navigate]);
 
   useEffect(() => {
     if (password) {
