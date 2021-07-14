@@ -76,15 +76,15 @@ const initialState = {
       likes: 0,
     },
   ],
-  // tweets: {
-  //   name: "jack Dorsey",
-  //   username: "jack",
-  //   content: "Just setting up my Witter 🐦",
-  //   likes: 0,
-  // },
   status: "idle",
   error: null,
 };
+
+// const initialState = {
+//   tweets: null,
+//   status: "idle",
+//   error: null,
+// };
 
 export const tweetsSlice = createSlice({
   name: "tweets",

@@ -1,5 +1,5 @@
 import background from "./bg.png";
-
+import { Link } from "react-router-dom";
 export function Landing() {
   return (
     <div>
@@ -47,12 +47,16 @@ export function Landing() {
           </h1>
 
           <div className="flex flex-col justify-left space-y-6 text-2xl">
-            <button className="w-3/4 py-6 bg-purple rounded-full font-bold hover:bg-opacity-70">
-              Log in
-            </button>
-            <button className="w-3/4 py-6 text-purple hover:text-text border border-purple rounded-full font-bold">
-              Sign up
-            </button>
+            <Link to="/login">
+              <button className="w-3/4 py-6 bg-purple rounded-full font-bold hover:bg-opacity-70">
+                Log in
+              </button>
+            </Link>
+            <Link to="/signup">
+              <button className="w-3/4 py-6 text-purple hover:text-text border border-purple rounded-full font-bold">
+                Sign up
+              </button>
+            </Link>
           </div>
         </div>
       </div>

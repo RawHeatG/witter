@@ -1,9 +1,16 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../authentication/authSlice";
 
 export function Login() {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const [passwordStyle, setPasswordStyle] = useState({});
+
+  const { user, status, error } = useSelector((state) => state.auth);
+  console.log(user, status, error);
+  const dispatch = useDispatch();
 
   function validatePassword(password) {
     const passwordRegex = /^[\w!@#$%^&*)(+=._-]{6,}$/;
@@ -22,9 +29,12 @@ export function Login() {
     }
   }, [password]);
 
-  const loginHandler = () => {};
+  const loginHandler = () => {
+    console.log(username, password);
+    dispatch(loginUser({ username, password }));
+  };
 
-  const logoutHandler = () => {};
+  // const logoutHandler = () => {};
 
   return (
     <div className="w-screen h-screen flex flex-col justify-center items-center space-y-4">
@@ -42,7 +52,10 @@ export function Login() {
           />
         </g>
       </svg>
-      <form className=" h-max w-max border-4 border-purple rounded-xl text-2xl">
+      {/* <div class=" flex justify-center items-center">
+        <div class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32"></div>
+      </div> */}
+      <div className=" h-max w-max border-4 border-purple rounded-xl text-2xl">
         <div className="flex flex-col items-center p-6 space-y-4 ">
           <h1 className="text-2xl font-bold">Witter</h1>
           <input
@@ -53,20 +66,26 @@ export function Login() {
           <input
             style={passwordStyle}
             className="bg-gray-700 text-white p-4 rounded"
+            type="password"
             placeholder="Password"
             onChange={(event) => setPassword(event.target.value)}
           />
-          <button className="px-4 py-2 bg-purple rounded-xl font-bold hover:bg-opacity-70">
+          <button
+            onClick={loginHandler}
+            className="px-4 py-2 bg-purple rounded-xl font-bold hover:bg-opacity-70"
+          >
             Log In
           </button>
           <p>
             Don't have an accont?{" "}
-            <span className="text-purple cursor-pointer hover:underline">
-              Sign-Up
-            </span>
+            <Link to="/signup">
+              <span className="text-purple cursor-pointer hover:underline">
+                Sign-Up
+              </span>
+            </Link>
           </p>
         </div>
-      </form>
+      </div>
     </div>
   );
 }

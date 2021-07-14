@@ -9,7 +9,9 @@ export function Signup() {
   const [emailStyle, setEmailStyle] = useState({});
   const [passwordStyle, setPasswordStyle] = useState({});
 
-  const signupHandler = () => {};
+  const signupHandler = () => {
+    console.log(name, username, email, password);
+  };
 
   function validateEmail(email) {
     const emailRegex =
@@ -62,7 +64,7 @@ export function Signup() {
           />
         </g>
       </svg>
-      <form className=" h-max w-max border-4 border-purple rounded-xl text-2xl">
+      <div className=" h-max w-max border-4 border-purple rounded-xl text-2xl">
         <div className="flex flex-col items-center p-6 space-y-4 ">
           <h1 className="text-2xl font-bold">Witter</h1>
           <input
@@ -85,24 +87,28 @@ export function Signup() {
             style={passwordStyle}
             className="bg-gray-700 text-white p-4 rounded"
             placeholder="Password"
+            type="password"
             onChange={(event) => setPassword(event.target.value)}
           />
           <small className="text-sm">
             *Password should be greater than 6 characters
           </small>
-          <button className="px-4 py-2 bg-purple rounded-xl font-bold hover:bg-opacity-70">
+          <button
+            onClick={signupHandler}
+            className="px-4 py-2 bg-purple rounded-xl font-bold hover:bg-opacity-70"
+          >
             Sign Up
           </button>
           <p>
             Already have an accont?{" "}
-            <Link className="link" to="/login">
+            <Link to="/login">
               <span className="text-purple cursor-pointer hover:underline">
                 Log In
               </span>
             </Link>
           </p>
         </div>
-      </form>
+      </div>
     </div>
   );
 }

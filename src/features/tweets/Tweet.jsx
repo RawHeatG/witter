@@ -1,8 +1,8 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { like } from "./tweetsSlice";
 
 export function Tweet({ tweet }) {
-  const { name, username, content, likes } = tweet;
+  const { user, content, likes } = tweet;
 
   const dispatch = useDispatch();
 
@@ -17,8 +17,8 @@ export function Tweet({ tweet }) {
       <div className="px-4 w-full">
         <div className="pb-2">
           <h2 className="text-lg font-bold">
-            {name}
-            <span className="secondary-text"> @{username}</span>
+            {user.name}
+            <span className="secondary-text"> @{user.username}</span>
           </h2>
         </div>
         <div className="pb-4 text-lg">{content}</div>

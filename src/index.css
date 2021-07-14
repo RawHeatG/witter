@@ -1,4 +1,5 @@
 @tailwind base;
+@tailwind components;
 
 .leftbar-option {
   @apply flex space-x-4 items-center cursor-pointer;
@@ -15,5 +16,28 @@
   @apply text-gray-400 font-light;
 }
 
-@tailwind components;
+.loader {
+  border-top-color: #3498db;
+  animation: spinner 1.5s linear infinite;
+  animation: spinner 1.5s linear infinite;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @tailwind utilities;

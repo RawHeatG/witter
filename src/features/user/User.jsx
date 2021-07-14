@@ -9,20 +9,18 @@ export function User() {
   const { username } = useParams();
   console.log(username);
   const dispatch = useDispatch();
-  const { user, status, error } = useSelector((state) => state.user);
-
-  // const { name, description, tweets, followers, following } = user;
-  console.log(user, status);
-  console.log("Yala, yolo");
+  const { user, status, tweets } = useSelector((state) => state.user);
+  console.log(user?.username, "'s tweets: ", tweets);
   useEffect(() => {
     const data = dispatch(getUserData(username));
-    console.log(data);
+    console.log("-----yooo-------", data);
   }, [dispatch, username]);
 
   return (
     <div>
       <LeftBar />
       {status === "loading" && <div>Loading...</div>}
+      {status === "fulfilled" && console.log(user)}
       {status === "fulfilled" && (
         <div className="midbar">
           <section className="px-6 pt-20 pb-6 text-xl border-b border-gray-600">
@@ -34,14 +32,14 @@ export function User() {
             <div className="flex justify-between py-4">
               <div>
                 <div className="py-4">
-                  <h1 className="text-3xl font-bold">{user.user.name}</h1>
-                  <h3 className="secondary-text">@{user.user.username}</h3>
+                  <h1 className="text-3xl font-bold">{user.name}</h1>
+                  <h3 className="secondary-text">@{user.username}</h3>
                 </div>
 
-                <h3 className="pb-4">{user.user.description}</h3>
+                <h3 className="pb-4">{user.bio}</h3>
                 <div className="flex space-x-2 items-center secondary-text pb-4">
                   <svg
-                    className="w-6 h-6 leftbar-option"
+                    className="w-6 h-6"
                     fill="currentColor"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -69,13 +67,13 @@ export function User() {
                 <div className="flex space-x-4">
                   <h3 className="secondary-text">
                     <span className="text-text font-bold">
-                      {user.user.following.length}
+                      {user.following.length}
                     </span>{" "}
                     Following
                   </h3>
                   <h3 className="secondary-text">
                     <span className="text-text font-bold">
-                      {user.user.followers.length}
+                      {user.followers.length}
                     </span>{" "}
                     Followers
                   </h3>
@@ -89,11 +87,12 @@ export function User() {
             </div>
           </section>
           <section>
-            {user.tweets.map(
-              (tweet) =>
-                tweet.username === username && (
-                  <Tweet key={tweet.content} tweet={tweet} />
-                )
+            {tweets.length ? (
+              tweets.map((tweet) => <Tweet key={tweet._id} tweet={tweet} />)
+            ) : (
+              <div className="flex justify-center p-4">
+                <h2 className="text-2xl">No tweets, Yet🐦</h2>
+              </div>
             )}
           </section>
         </div>

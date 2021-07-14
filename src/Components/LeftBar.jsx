@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export function LeftBar() {
+  const { user } = useSelector((state) => state.auth);
   return (
     <div className="fixed top-0 left-0 w-1/4 h-screen flex flex-col pl-32 pr-8 border-r-2 text-left border-purple">
       <div className="w-16 h-16">
@@ -101,7 +103,7 @@ export function LeftBar() {
           </div>
           <h2>Bookmarks</h2>
         </div>
-        <Link to="/user/rawheat">
+        <Link to={`/user/${user.username}`}>
           <div className="leftbar-option">
             <div>
               <svg

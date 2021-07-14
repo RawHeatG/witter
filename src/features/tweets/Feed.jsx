@@ -1,5 +1,5 @@
-import { useSelector, useDispatch } from "react-redux";
-import { likes } from "./tweetsSlice";
+import { useSelector } from "react-redux";
+// import { likes } from "./tweetsSlice";
 import { AddTweet } from "./AddTweet";
 import { Tweet } from "./Tweet";
 
@@ -9,11 +9,11 @@ export function Feed() {
   return (
     <div>
       <AddTweet />
-      <div>
+      <section>
         {tweets.map((tweet) => (
           <Tweet key={tweet.username} tweet={tweet} />
         ))}
-      </div>
+      </section>
     </div>
   );
 }
