@@ -5,11 +5,11 @@ function App() {
   return (
     <div className="text-text bg-gray-900 w-screen h-full min-h-screen">
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="/feed" element={<Home />} />
         <Route path="/user/:username" element={<User />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/landing" element={<Landing />} />
         <Route path="/notifications" element={<Notifications />} />
       </Routes>
     </div>

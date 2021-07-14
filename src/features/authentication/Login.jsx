@@ -30,7 +30,6 @@ export function Login() {
   }, [password]);
 
   const loginHandler = () => {
-    console.log(username, password);
     dispatch(loginUser({ username, password }));
   };
 

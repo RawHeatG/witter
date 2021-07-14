@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
   getAllTweetsService,
   toggleLike,
+  addTweetService,
 } from "../../services/tweet/tweet.services";
 
 // const initialState = {
@@ -88,7 +89,17 @@ export const getAllTweets = createAsyncThunk(
   "tweets/getAllTweets",
   async () => {
     const response = await getAllTweetsService();
-    console.log(response);
+    if (!response.data.success) {
+      throw new Error(response.data.error);
+    }
+    return response.data.data;
+  }
+);
+
+export const addTweet = createAsyncThunk(
+  "tweets/addTweet",
+  async ({ userId, content }) => {
+    const response = await addTweetService(userId, content);
     if (!response.data.success) {
       throw new Error(response.data.error);
     }
@@ -99,9 +110,7 @@ export const getAllTweets = createAsyncThunk(
 export const likeButtonCliked = createAsyncThunk(
   "tweets/likeButtonCliked",
   async ({ userId, tweetId }) => {
-    console.log("From slice", userId, tweetId);
     const response = await toggleLike(userId, tweetId);
-    console.log(response);
     if (!response.data.success) {
       throw new Error(response.data.error);
     }
@@ -118,16 +127,7 @@ const initialState = {
 export const tweetsSlice = createSlice({
   name: "tweets",
   initialState,
-  reducers: {
-    // addTweet: (state, action) => {
-    //   state.tweets.
-    // },
-    // like: (state, action) => {
-    //   state.tweets.map((tweet) =>
-    //     tweet.username === action.payload.username ? tweet.likes++ : tweet
-    //   );
-    // },
-  },
+  reducers: {},
   extraReducers: {
     [getAllTweets.pending]: (state) => {
       state.status = "loading";
@@ -137,6 +137,17 @@ export const tweetsSlice = createSlice({
       state.status = "fulfilled";
     },
     [getAllTweets.rejected]: (state, action) => {
+      state.error = action.payload;
+      state.status = "error";
+    },
+    [addTweet.pending]: (state) => {
+      state.status = "loading";
+    },
+    [addTweet.fulfilled]: (state, action) => {
+      state.tweets.push(action.payload);
+      state.status = "fulfilled";
+    },
+    [addTweet.rejected]: (state, action) => {
       state.error = action.payload;
       state.status = "error";
     },

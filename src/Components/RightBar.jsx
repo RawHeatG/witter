@@ -9,7 +9,6 @@ export function RightBar() {
   const filteredUsers = allUsers?.filter(
     (user) => user._id !== loggedInUser.userId
   );
-  console.log(allUsers, filteredUsers);
   useEffect(() => {
     dispatch(getAllUsersData());
   }, [dispatch]);

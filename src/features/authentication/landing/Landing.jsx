@@ -1,6 +1,14 @@
 import background from "./bg.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 export function Landing() {
+  const loggedInUser = useSelector((state) => state.auth.user);
+  const navigate = useNavigate();
+  console.log(loggedInUser);
+  useEffect(() => {
+    loggedInUser && navigate("/feed");
+  }, [loggedInUser, navigate]);
   return (
     <div>
       <div className="flex">

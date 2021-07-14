@@ -15,18 +15,12 @@ export function User() {
     dispatch(getUserData(username));
   }, [dispatch, username]);
 
-  // const FollowButtons = () => {
-  //   return (
-
-  //   );
-  // };
-
   return (
     <div>
       <LeftBar />
       {status === "loading" && <div>Loading...</div>}
-      {status === "fulfilled" && console.log(user, username)}
-      {status === "fulfilled" && (
+      {/* {status === "fulfilled" && console.log("It's fullfille", user, username)} */}
+      {status === "fulfilled" && user && (
         <div className="midbar">
           <section className="px-6 pt-20 pb-6 text-xl border-b border-gray-600">
             <img

@@ -18,7 +18,7 @@ export const getUserData = createAsyncThunk(
   "user/getUserData",
   async (username) => {
     const response = await getUser(username);
-    console.log(response);
+    console.log("Yoooooooooo", response.data.data.user);
     if (!response.data.success) {
       throw new Error(response.data.error);
     }
@@ -67,6 +67,7 @@ export const userSlice = createSlice({
       state.status = "loading";
     },
     [getUserData.fulfilled]: (state, action) => {
+      console.log("payload", action.payload);
       state.user = action.payload.user;
       state.tweets = action.payload.tweets;
       state.status = "fulfilled";

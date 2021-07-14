@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { signupUser } from "../authentication/authSlice";
 
 export function Signup() {
   const [name, setName] = useState();
@@ -8,10 +10,18 @@ export function Signup() {
   const [email, setEmail] = useState(null);
   const [emailStyle, setEmailStyle] = useState({});
   const [passwordStyle, setPasswordStyle] = useState({});
+  const [bio, setBio] = useState();
+
+  const dispatch = useDispatch();
 
   const signupHandler = () => {
-    console.log(name, username, email, password);
+    dispatch(signupUser({ name, username, email, password, bio }));
   };
+  const loggedInUser = useSelector((state) => state.auth.user);
+  const navigate = useNavigate();
+  useEffect(() => {
+    loggedInUser && navigate("/feed");
+  }, [loggedInUser, navigate]);
 
   function validateEmail(email) {
     const emailRegex =
@@ -76,6 +86,11 @@ export function Signup() {
             className="bg-gray-700 text-white p-4 rounded"
             placeholder="Username"
             onChange={(event) => setUsername(event.target.value)}
+          />
+          <input
+            className="bg-gray-700 text-white p-4 rounded"
+            placeholder="Bio"
+            onChange={(event) => setBio(event.target.value)}
           />
           <input
             style={emailStyle}
