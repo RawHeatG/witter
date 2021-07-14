@@ -1,40 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getUser } from "../../services/user";
-import { toggleFollow } from "../../services/user/user.services";
+import { getAllUsers, toggleFollow } from "../../services/user/user.services";
 
-// const user = {
-//   name: "Rohit Gulati",
-//   username: "@rawheatg",
-//   description: "Hi, I'm jack, jack of all things Web Dev👨‍💻",
-//   followers: 624,
-//   following: 268,
-//   tweets: [
-//     {
-//       name: "Honey Singh",
-//       username: "honeysingh",
-//       content: "Yo yo",
-//       likes: 0,
-//     },
-//     {
-//       name: "Rohit Gulati",
-//       username: "rawheat",
-//       content: "Yolo beecheez",
-//       likes: 0,
-//     },
-//     {
-//       name: "Jack Dorsey",
-//       username: "jack",
-//       content: "Just setting up my",
-//       likes: 0,
-//     },
-//     {
-//       name: "Rohit Gulati",
-//       username: "rawheat",
-//       content: "Yolo beecheez",
-//       likes: 0,
-//     },
-//   ],
-// };
+export const getAllUsersData = createAsyncThunk(
+  "user/getAllUsersData",
+  async () => {
+    const response = await getAllUsers();
+    console.log(response);
+    if (!response.data.success) {
+      throw new Error(response.data.error);
+    }
+    return response.data.data;
+  }
+);
 
 export const getUserData = createAsyncThunk(
   "user/getUserData",
@@ -62,6 +40,7 @@ export const followButtonClicked = createAsyncThunk(
 );
 
 const initialState = {
+  allUsers: [],
   user: null,
   tweets: null,
   error: null,
@@ -73,6 +52,17 @@ export const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
+    [getAllUsersData.pending]: (state) => {
+      state.status = "loading";
+    },
+    [getAllUsersData.fulfilled]: (state, action) => {
+      state.allUsers = action.payload;
+      state.status = "fulfilled";
+    },
+    [getAllUsersData.rejected]: (state, action) => {
+      state.error = action.payload;
+      state.status = "error";
+    },
     [getUserData.pending]: (state) => {
       state.status = "loading";
     },

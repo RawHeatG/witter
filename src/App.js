@@ -1,4 +1,4 @@
-import { Home, User, Landing, Login, Signup } from "./features";
+import { Home, User, Landing, Login, Signup, Notifications } from "./features";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -10,6 +10,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/landing" element={<Landing />} />
+        <Route path="/notifications" element={<Notifications />} />
       </Routes>
     </div>
   );
