@@ -5,7 +5,6 @@ import axios from "axios";
 export const loginUser = createAsyncThunk(
   "authentication/loginUser",
   async (user) => {
-    console.log(user);
     const response = await loginService(user);
     return { token: response.data.token, user: response.data.data };
   }
@@ -25,8 +24,6 @@ const initialState = {
   status: "idle",
   error: null,
 };
-console.log(JSON.parse(localStorage?.getItem("witterToken")));
-console.log(initialState.user, initialState.token);
 
 export const authSlice = createSlice({
   name: "authentication",

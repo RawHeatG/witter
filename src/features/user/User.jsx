@@ -1,26 +1,31 @@
 import { useParams } from "react-router";
 import { LeftBar, RightBar } from "../../Components";
 import { useSelector, useDispatch } from "react-redux";
-import { getUserData } from "./userSlice";
+import { followButtonClicked, getUserData } from "./userSlice";
 import { Tweet } from "../tweets/Tweet";
 import { useEffect } from "react";
 
 export function User() {
   const { username } = useParams();
-  console.log(username);
   const dispatch = useDispatch();
   const { user, status, tweets } = useSelector((state) => state.user);
-  console.log(user?.username, "'s tweets: ", tweets);
+  console.log("User followers", user?.followers);
+  const loggedInUser = useSelector((state) => state.auth.user);
   useEffect(() => {
-    const data = dispatch(getUserData(username));
-    console.log("-----yooo-------", data);
+    dispatch(getUserData(username));
   }, [dispatch, username]);
+
+  // const FollowButtons = () => {
+  //   return (
+
+  //   );
+  // };
 
   return (
     <div>
       <LeftBar />
       {status === "loading" && <div>Loading...</div>}
-      {status === "fulfilled" && console.log(user)}
+      {status === "fulfilled" && console.log(user, username)}
       {status === "fulfilled" && (
         <div className="midbar">
           <section className="px-6 pt-20 pb-6 text-xl border-b border-gray-600">
@@ -79,11 +84,31 @@ export function User() {
                   </h3>
                 </div>
               </div>
-              <div>
-                <button className="text-purple hover:text-text font-semibold border border-purple rounded-full py-3 px-4">
-                  Edit Profile
-                </button>
-              </div>
+              {username === loggedInUser.username ? (
+                <div>
+                  <button className="text-purple hover:text-text font-semibold border border-purple rounded-full py-3 px-4">
+                    Edit Profile
+                  </button>
+                </div>
+              ) : (
+                <div>
+                  <button
+                    onClick={() =>
+                      dispatch(
+                        followButtonClicked({
+                          userToFollowId: user._id,
+                          userFollowingId: loggedInUser.userId,
+                        })
+                      )
+                    }
+                    className=" hover:bg-opacity-70 font-semibold bg-purple rounded-full py-3 px-8"
+                  >
+                    {user.followers.includes(loggedInUser.userId)
+                      ? "Unfollow"
+                      : "Follow"}
+                  </button>
+                </div>
+              )}
             </div>
           </section>
           <section>

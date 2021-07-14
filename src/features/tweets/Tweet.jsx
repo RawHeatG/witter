@@ -1,9 +1,12 @@
-import { useDispatch } from "react-redux";
-import { like } from "./tweetsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { likeButtonCliked } from "./tweetsSlice";
 
 export function Tweet({ tweet }) {
+  const tweetId = tweet._id;
+  console.log("______**_________", tweetId);
   const { user, content, likes } = tweet;
-
+  const loggedInUser = useSelector((state) => state.auth.user);
+  console.log({ loggedInUser });
   const dispatch = useDispatch();
 
   return (
@@ -42,8 +45,8 @@ export function Tweet({ tweet }) {
             </svg>
             <svg
               className="w-8 h-8 leftbar-option"
-              fill="currentColor"
-              stroke="currentColor"
+              fill="#17bf63"
+              stroke="#17bf63"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -58,12 +61,17 @@ export function Tweet({ tweet }) {
             </svg>
             <svg
               className="w-8 h-8 leftbar-option"
-              fill="currentColor"
-              stroke="currentColor"
+              fill={likes?.includes(user._id) ? "#e0245e" : "currentColor"}
+              stroke={likes?.includes(user._id) ? "#e0245e" : "currentColor"}
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
               onClick={() => {
-                dispatch(like(tweet));
+                dispatch(
+                  likeButtonCliked({
+                    userId: loggedInUser.userId,
+                    tweetId: tweetId,
+                  })
+                );
               }}
             >
               <g>
@@ -75,7 +83,7 @@ export function Tweet({ tweet }) {
                 />
               </g>
             </svg>
-            {likes}
+            {likes.length}
           </div>
           <div className="pr-4">
             <svg

@@ -1,19 +1,28 @@
-import { useSelector } from "react-redux";
-// import { likes } from "./tweetsSlice";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllTweets } from "./tweetsSlice";
 import { AddTweet } from "./AddTweet";
 import { Tweet } from "./Tweet";
 
 export function Feed() {
-  const tweets = useSelector((state) => state.tweets.tweets);
-  console.log(tweets);
+  const dispatch = useDispatch();
+  const { tweets, status, error } = useSelector((state) => state.tweets);
+
+  useEffect(() => {
+    dispatch(getAllTweets());
+  }, [dispatch]);
+  console.log(tweets, status, error);
   return (
     <div>
       <AddTweet />
-      <section>
-        {tweets.map((tweet) => (
-          <Tweet key={tweet.username} tweet={tweet} />
-        ))}
-      </section>
+      {status === "loading" && <h1>Loding...</h1>}
+      {status === "fulfilled" && (
+        <section>
+          {tweets.map((tweet) => (
+            <Tweet key={tweet._id} tweet={tweet} />
+          ))}
+        </section>
+      )}
     </div>
   );
 }
