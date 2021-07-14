@@ -129,16 +129,6 @@ export function LeftBar() {
             <h2>Profile</h2>
           </div>
         </Link>
-        <Link to="/landing">
-          <div>
-            <h2>Landing</h2>
-          </div>
-        </Link>
-        <Link to="/login">
-          <div>
-            <h2>Login</h2>
-          </div>
-        </Link>
       </div>
       <button className="w-full h-16 flex items-center justify-center bg-purple rounded-full text-center text-2xl font-bold hover:bg-opacity-70">
         Weet

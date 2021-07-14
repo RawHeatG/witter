@@ -11,11 +11,14 @@ export function Signup() {
   const [emailStyle, setEmailStyle] = useState({});
   const [passwordStyle, setPasswordStyle] = useState({});
   const [bio, setBio] = useState();
+  const [profileImgUrl, setProfileImgUrl] = useState();
 
   const dispatch = useDispatch();
 
   const signupHandler = () => {
-    dispatch(signupUser({ name, username, email, password, bio }));
+    dispatch(
+      signupUser({ name, username, email, password, bio, profileImgUrl })
+    );
   };
   const loggedInUser = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
@@ -91,6 +94,11 @@ export function Signup() {
             className="bg-gray-700 text-white p-4 rounded"
             placeholder="Bio"
             onChange={(event) => setBio(event.target.value)}
+          />
+          <input
+            className="bg-gray-700 text-white p-4 rounded"
+            placeholder="Profile Image Url"
+            onChange={(event) => setProfileImgUrl(event.target.value)}
           />
           <input
             style={emailStyle}
