@@ -137,13 +137,13 @@ export function LeftBar() {
         <div>
           <img
             className="rounded-full w-12 h-12"
-            src="https://pbs.twimg.com/profile_images/1359769263624495105/ZA45zIUf_400x400.jpg"
+            src={user.profileImgUrl}
             alt="user"
           />
         </div>
         <div>
-          <h2 className="text-lg font-bold">Rohit Gulati</h2>
-          <h3>@rawheatg</h3>
+          <h2 className="text-lg font-bold">{user.name}</h2>
+          <h3>@{user.username}</h3>
         </div>
       </div>
     </div>

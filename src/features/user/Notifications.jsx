@@ -5,14 +5,12 @@ import { getUserData } from "./userSlice";
 import { useEffect } from "react";
 
 export function Notifications() {
-  // const { username } = useParams();
   const dispatch = useDispatch();
-  const loggedInUser = useSelector((state) => state.auth.user);
-  const { user, status } = useSelector((state) => state.user);
+  const { user, status } = useSelector((state) => state.auth);
   console.log(user);
   useEffect(() => {
-    dispatch(getUserData(loggedInUser.username));
-  }, [dispatch, loggedInUser.username]);
+    dispatch(getUserData(user.username));
+  }, [dispatch, user.username]);
   return (
     <div className="midbar">
       <LeftBar />
@@ -24,8 +22,8 @@ export function Notifications() {
               Notifications
             </h1>
 
-            {user.notification.map((notif) => (
-              <div className="border-b border-gray-600 px-4">{notif}</div>
+            {user?.notification.map((notif) => (
+              <div className="border-b border-gray-600 px-4 my-4">{notif}</div>
             ))}
           </div>
         )}

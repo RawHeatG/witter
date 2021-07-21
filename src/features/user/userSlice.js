@@ -6,7 +6,6 @@ export const getAllUsersData = createAsyncThunk(
   "user/getAllUsersData",
   async () => {
     const response = await getAllUsers();
-    console.log(response);
     if (!response.data.success) {
       throw new Error(response.data.error);
     }
@@ -18,7 +17,6 @@ export const getUserData = createAsyncThunk(
   "user/getUserData",
   async (username) => {
     const response = await getUser(username);
-    console.log("Yoooooooooo", response.data.data.user);
     if (!response.data.success) {
       throw new Error(response.data.error);
     }
@@ -29,9 +27,7 @@ export const getUserData = createAsyncThunk(
 export const followButtonClicked = createAsyncThunk(
   "user/followButtonClicked",
   async ({ userToFollowId, userFollowingId }) => {
-    console.log(userToFollowId, userFollowingId);
     const response = await toggleFollow(userToFollowId, userFollowingId);
-    console.log(response);
     if (!response.data.success) {
       throw new Error(response.data.error);
     }
@@ -67,7 +63,6 @@ export const userSlice = createSlice({
       state.status = "loading";
     },
     [getUserData.fulfilled]: (state, action) => {
-      console.log("payload", action.payload);
       state.user = action.payload.user;
       state.tweets = action.payload.tweets;
       state.status = "fulfilled";
@@ -80,7 +75,6 @@ export const userSlice = createSlice({
       state.status = "loading";
     },
     [followButtonClicked.fulfilled]: (state, action) => {
-      console.log("payload", action.payload);
       state.user = action.payload;
       state.status = "fulfilled";
     },

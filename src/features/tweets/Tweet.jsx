@@ -1,29 +1,31 @@
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { likeButtonCliked } from "./tweetsSlice";
 
 export function Tweet({ tweet }) {
   const tweetId = tweet._id;
-  console.log("______**_________", tweetId);
   const { user, content, likes } = tweet;
   const loggedInUser = useSelector((state) => state.auth.user);
-  console.log({ loggedInUser });
   const dispatch = useDispatch();
 
   return (
     <div className="flex min-h-32 border-b border-gray-600 p-4">
-      <img
-        className="rounded-full w-16 h-16"
-        src="https://pbs.twimg.com/profile_images/1359769263624495105/ZA45zIUf_400x400.jpg"
-        alt="user"
-      />
-
+      <Link to={`/user/${user.username}`}>
+        <img
+          className="rounded-full w-16 h-16"
+          src={user.profileImgUrl}
+          alt="user"
+        />
+      </Link>
       <div className="px-4 w-full">
-        <div className="pb-2">
-          <h2 className="text-lg font-bold">
-            {user.name}
-            <span className="secondary-text"> @{user.username}</span>
-          </h2>
-        </div>
+        <Link to={`/user/${user.username}`}>
+          <div className="pb-2">
+            <h2 className="text-lg font-bold">
+              {user.name}
+              <span className="secondary-text"> @{user.username}</span>
+            </h2>
+          </div>
+        </Link>
         <div className="pb-4 text-lg">{content}</div>
         <div className="flex justify-between">
           <div className="flex space-x-20">
@@ -45,8 +47,8 @@ export function Tweet({ tweet }) {
             </svg>
             <svg
               className="w-8 h-8 leftbar-option"
-              fill="#17bf63"
-              stroke="#17bf63"
+              fill="currentColor"
+              stroke="currentColor"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -61,8 +63,16 @@ export function Tweet({ tweet }) {
             </svg>
             <svg
               className="w-8 h-8 leftbar-option"
-              fill={likes?.includes(user._id) ? "#e0245e" : "currentColor"}
-              stroke={likes?.includes(user._id) ? "#e0245e" : "currentColor"}
+              fill={
+                likes?.includes(loggedInUser.userId)
+                  ? "#e0245e"
+                  : "currentColor"
+              }
+              stroke={
+                likes?.includes(loggedInUser.userId)
+                  ? "#e0245e"
+                  : "currentColor"
+              }
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
               onClick={() => {

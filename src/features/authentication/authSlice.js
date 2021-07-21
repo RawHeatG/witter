@@ -32,6 +32,7 @@ export const authSlice = createSlice({
     logoutUser: () => {
       localStorage.removeItem("witterToken");
       localStorage.removeItem("witterUser");
+      console.log("Logout ran");
       return {
         user: null,
         token: null,

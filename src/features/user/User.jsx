@@ -4,28 +4,31 @@ import { useSelector, useDispatch } from "react-redux";
 import { followButtonClicked, getUserData } from "./userSlice";
 import { Tweet } from "../tweets/Tweet";
 import { useEffect } from "react";
+import { logoutUser } from "../authentication/authSlice";
+import { useNavigate } from "react-router-dom";
 
 export function User() {
   const { username } = useParams();
   const dispatch = useDispatch();
   const { user, status, tweets } = useSelector((state) => state.user);
-  console.log("User followers", user?.followers);
   const loggedInUser = useSelector((state) => state.auth.user);
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(getUserData(username));
   }, [dispatch, username]);
+
+  console.log(loggedInUser);
 
   return (
     <div>
       <LeftBar />
       {status === "loading" && <div>Loading...</div>}
-      {/* {status === "fulfilled" && console.log("It's fullfille", user, username)} */}
       {status === "fulfilled" && user && (
         <div className="midbar">
           <section className="px-6 pt-20 pb-6 text-xl border-b border-gray-600">
             <img
               className="rounded-full w-36 h-36"
-              src="https://pbs.twimg.com/profile_images/1359769263624495105/ZA45zIUf_400x400.jpg"
+              src={user.profileImgUrl}
               alt="user"
             />
             <div className="flex justify-between py-4">
@@ -80,8 +83,14 @@ export function User() {
               </div>
               {username === loggedInUser.username ? (
                 <div>
-                  <button className="text-purple hover:text-text font-semibold border border-purple rounded-full py-3 px-4">
-                    Edit Profile
+                  <button
+                    onClick={() => {
+                      dispatch(logoutUser());
+                      navigate("/");
+                    }}
+                    className="text-purple hover:text-text font-semibold border border-purple rounded-full py-3 px-4"
+                  >
+                    Logout
                   </button>
                 </div>
               ) : (

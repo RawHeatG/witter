@@ -6,17 +6,15 @@ import { Tweet } from "./Tweet";
 
 export function Feed() {
   const dispatch = useDispatch();
-  const { tweets, status, error } = useSelector((state) => state.tweets);
+  const { tweets, status } = useSelector((state) => state.tweets);
 
   useEffect(() => {
     dispatch(getAllTweets());
-  }, [dispatch]);
-  console.log(tweets, status, error);
+  }, [dispatch, tweets.length]);
   return (
     <div>
       <AddTweet />
-      {status === "loading" && <h1>Loding...</h1>}
-      {status === "fulfilled" && (
+      {(status === "fulfilled" || "loading") && (
         <section>
           {tweets.map((tweet) => (
             <Tweet key={tweet._id} tweet={tweet} />
