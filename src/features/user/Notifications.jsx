@@ -12,18 +12,20 @@ export function Notifications() {
     dispatch(getUserData(user.username));
   }, [dispatch, user.username]);
   return (
-    <div className="midbar">
+    <div>
       <LeftBar />
-      <div>
+      <div className="midbar">
         {status === "loading" && <h2>loading....</h2>}
-        {status === "fulfilled" && (
+        {(status === "fulfilled" || status === "idle") && (
           <div className="flex flex-col ">
             <h1 className="text-3xl border-b border-gray-600 px-4 font-bold">
               Notifications
             </h1>
 
             {user?.notification.map((notif) => (
-              <div className="border-b border-gray-600 px-4 my-4">{notif}</div>
+              <div key={notif} className="border-b border-gray-600 px-4 my-4">
+                {notif}
+              </div>
             ))}
           </div>
         )}

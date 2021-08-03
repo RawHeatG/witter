@@ -28,7 +28,7 @@ export function RightBar() {
                   <img
                     className="rounded-full w-16 h-16"
                     src={user.profileImgUrl}
-                    alt="user"
+                    alt={user.name}
                   />
                 </div>
                 <div className="flex flex-col">

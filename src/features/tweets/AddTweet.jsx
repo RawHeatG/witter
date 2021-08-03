@@ -30,9 +30,10 @@ export function AddTweet() {
             <div className="flex justify-end pt-4">
               <button
                 className="px-8 py-2 rounded-full text-xl font-bold bg-purple"
-                onClick={() =>
-                  dispatch(addTweet({ userId: user.userId, content: content }))
-                }
+                onClick={() => {
+                  setContent(null);
+                  dispatch(addTweet({ userId: user.userId, content: content }));
+                }}
               >
                 Weet
               </button>

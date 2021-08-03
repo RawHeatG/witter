@@ -14,7 +14,7 @@ export function Tweet({ tweet }) {
         <img
           className="rounded-full w-16 h-16"
           src={user.profileImgUrl}
-          alt="user"
+          alt={user.name}
         />
       </Link>
       <div className="px-4 w-full">

@@ -39,27 +39,29 @@ export function LeftBar() {
             <h2>Home</h2>
           </div>
         </Link>
-        <div className="leftbar-option">
-          <div>
-            <svg
-              className="w-8 h-8"
-              fill="currentColor"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g>
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={0.5}
-                  d="M21 7.337h-3.93l.372-4.272c.036-.412-.27-.775-.682-.812-.417-.03-.776.27-.812.683l-.383 4.4h-6.32l.37-4.27c.037-.413-.27-.776-.68-.813-.42-.03-.777.27-.813.683l-.382 4.4H3.782c-.414 0-.75.337-.75.75s.336.75.75.75H7.61l-.55 6.327H3c-.414 0-.75.336-.75.75s.336.75.75.75h3.93l-.372 4.272c-.036.412.27.775.682.812l.066.003c.385 0 .712-.295.746-.686l.383-4.4h6.32l-.37 4.27c-.036.413.27.776.682.813l.066.003c.385 0 .712-.295.746-.686l.382-4.4h3.957c.413 0 .75-.337.75-.75s-.337-.75-.75-.75H16.39l.55-6.327H21c.414 0 .75-.336.75-.75s-.336-.75-.75-.75zm-6.115 7.826h-6.32l.55-6.326h6.32l-.55 6.326z"
-                />
-              </g>
-            </svg>
+        <Link to="/explore">
+          <div className="leftbar-option">
+            <div>
+              <svg
+                className="w-8 h-8"
+                fill="currentColor"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={0.5}
+                    d="M21 7.337h-3.93l.372-4.272c.036-.412-.27-.775-.682-.812-.417-.03-.776.27-.812.683l-.383 4.4h-6.32l.37-4.27c.037-.413-.27-.776-.68-.813-.42-.03-.777.27-.813.683l-.382 4.4H3.782c-.414 0-.75.337-.75.75s.336.75.75.75H7.61l-.55 6.327H3c-.414 0-.75.336-.75.75s.336.75.75.75h3.93l-.372 4.272c-.036.412.27.775.682.812l.066.003c.385 0 .712-.295.746-.686l.383-4.4h6.32l-.37 4.27c-.036.413.27.776.682.813l.066.003c.385 0 .712-.295.746-.686l.382-4.4h3.957c.413 0 .75-.337.75-.75s-.337-.75-.75-.75H16.39l.55-6.327H21c.414 0 .75-.336.75-.75s-.336-.75-.75-.75zm-6.115 7.826h-6.32l.55-6.326h6.32l-.55 6.326z"
+                  />
+                </g>
+              </svg>
+            </div>
+            <h2>Explore</h2>
           </div>
-          <h2>Explore</h2>
-        </div>
+        </Link>
         <Link to="/notifications">
           <div className="leftbar-option">
             <div>
@@ -133,19 +135,21 @@ export function LeftBar() {
       <button className="w-full h-16 flex items-center justify-center bg-purple rounded-full text-center text-2xl font-bold hover:bg-opacity-70">
         Weet
       </button>
-      <div className="flex fixed bottom-0 py-10 space-x-4">
-        <div>
-          <img
-            className="rounded-full w-12 h-12"
-            src={user.profileImgUrl}
-            alt="user"
-          />
+      <Link to={`/user/${user.username}`}>
+        <div className="flex fixed bottom-0 py-10 space-x-4">
+          <div>
+            <img
+              className="rounded-full w-12 h-12"
+              src={user.profileImgUrl}
+              alt={user.name}
+            />
+          </div>
+          <div>
+            <h2 className="text-lg font-bold">{user.name}</h2>
+            <h3>@{user.username}</h3>
+          </div>
         </div>
-        <div>
-          <h2 className="text-lg font-bold">{user.name}</h2>
-          <h3>@{user.username}</h3>
-        </div>
-      </div>
+      </Link>
     </div>
   );
 }

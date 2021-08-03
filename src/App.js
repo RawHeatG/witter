@@ -1,4 +1,12 @@
-import { Home, User, Landing, Login, Signup, Notifications } from "./features";
+import {
+  Home,
+  User,
+  Landing,
+  Login,
+  Signup,
+  Notifications,
+  Explore,
+} from "./features";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -11,6 +19,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/notifications" element={<Notifications />} />
+        <Route path="/explore" element={<Explore />} />
       </Routes>
     </div>
   );
