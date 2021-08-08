@@ -15,14 +15,16 @@ export function AddTweet() {
         <div className="flex ">
           <div>
             <img
-              className="rounded-full w-16 h-16"
+              className="rounded-full w-16 h-16 object-cover"
               src={user.profileImgUrl}
-              alt="user"
+              alt={user.Name}
             />
           </div>
           <div className="w-full pr-4 pt-3">
             <textarea
               style={{ resize: "none" }}
+              value={content}
+              id="tweetInput"
               className="w-full h-20 mx-4 text-2xl text-text bg-gray-900 border-b border-gray-600"
               placeholder="What's happening"
               onChange={(event) => setContent(event.target.value)}
@@ -32,6 +34,7 @@ export function AddTweet() {
                 className="px-8 py-2 rounded-full text-xl font-bold bg-purple"
                 onClick={() => {
                   setContent(null);
+                  document.getElementById("tweetInput").value = null;
                   dispatch(addTweet({ userId: user.userId, content: content }));
                 }}
               >

@@ -26,7 +26,7 @@ export function RightBar() {
               <div className="flex items-center p-4 border-b border-gray-600 space-x-4">
                 <div>
                   <img
-                    className="rounded-full w-16 h-16"
+                    className="rounded-full w-16 h-16 object-cover"
                     src={user.profileImgUrl}
                     alt={user.name}
                   />

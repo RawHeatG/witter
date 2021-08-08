@@ -27,9 +27,9 @@ export function User() {
         <div className="midbar">
           <section className="px-6 pt-20 pb-6 text-xl border-b border-gray-600">
             <img
-              className="rounded-full w-36 h-36"
+              className="rounded-full w-36 h-36 object-cover"
               src={user.profileImgUrl}
-              alt="user"
+              alt={user.name}
             />
             <div className="flex justify-between py-4">
               <div>

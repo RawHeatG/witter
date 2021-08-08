@@ -14,13 +14,15 @@ export function Feed() {
   return (
     <div>
       <AddTweet />
-      {(status === "fulfilled" || "loading") && (
-        <div>
-          {tweets.map((tweet) => (
-            <Tweet key={tweet._id} tweet={tweet} />
-          ))}
-        </div>
-      )}
+      <section>
+        {(status === "fulfilled" || "loading") && (
+          <div>
+            {tweets.map((tweet) => (
+              <Tweet key={tweet._id} tweet={tweet} />
+            ))}
+          </div>
+        )}
+      </section>
     </div>
   );
 }

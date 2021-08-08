@@ -65,12 +65,16 @@ export function Login() {
           <input
             className="bg-gray-700 text-white p-4 rounded"
             placeholder="Username"
+            id="username"
+            value={username}
             onChange={(event) => setUsername(event.target.value)}
           />
           <input
             style={passwordStyle}
             className="bg-gray-700 text-white p-4 rounded"
             type="password"
+            id="password"
+            value={password}
             placeholder="Password"
             onChange={(event) => setPassword(event.target.value)}
           />
@@ -88,6 +92,17 @@ export function Login() {
               </span>
             </Link>
           </p>
+          <div
+            className="p-8 font-xl cursor-pointer"
+            onClick={() => {
+              // document.getElementById("username").value = "guest";
+              // document.getElementById("password").value = "guest123";
+              setUsername("guest");
+              setPassword("guest123");
+            }}
+          >
+            Login with Guest credentials
+          </div>
         </div>
       </div>
     </div>

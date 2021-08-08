@@ -86,7 +86,7 @@ export function LeftBar() {
           </div>
         </Link>
 
-        <div className="leftbar-option">
+        {/* <div className="leftbar-option">
           <div>
             <svg
               className="w-8 h-8"
@@ -106,7 +106,7 @@ export function LeftBar() {
             </svg>
           </div>
           <h2>Bookmarks</h2>
-        </div>
+          </div> */}
         <Link to={`/user/${user.username}`}>
           <div className="leftbar-option">
             <div>
@@ -139,7 +139,7 @@ export function LeftBar() {
         <div className="flex fixed bottom-0 py-10 space-x-4">
           <div>
             <img
-              className="rounded-full w-12 h-12"
+              className="rounded-full w-12 h-12 object-cover"
               src={user.profileImgUrl}
               alt={user.name}
             />
